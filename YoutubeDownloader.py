@@ -17,6 +17,7 @@ def main(page: ft.Page):
     greetings = ft.Column()
 
     def btn_click(e):
+        greetings.controls.append(ft.Text(f"Download is Starting!"))
         video_url = first_name.value                                                                                                                                                                  
         download_location = last_name.value
         myVideo = YouTube(video_url)
@@ -25,7 +26,7 @@ def main(page: ft.Page):
         stream = ffmpeg.input(filename)	
         stream = ffmpeg.output(stream, f"{filename}.mp3", format='mp3')
         ffmpeg.run(stream)
-        greetings.controls.append(ft.Text(f"Hello, {first_name.value} {filename}!"))
+        greetings.controls.append(ft.Text(f"Download is Completed !{filename}"))
         first_name.value = ""
         #last_name.value = ""
         page.update()
@@ -33,11 +34,12 @@ def main(page: ft.Page):
         
 
     def btn_click_movie(e):
+        greetings.controls.append(ft.Text(f"Download is Starting!"))
         video_url = first_name.value                                                                                                                                                                  
         download_location = last_name.value
         myVideo = YouTube(video_url)
         filename = myVideo.streams.get_by_itag(22).download(download_location)
-        greetings.controls.append(ft.Text(f"Hello, {first_name.value} {filename}!"))
+        greetings.controls.append(ft.Text(f"Download is Completed !{filename}"))
         first_name.value = ""
         #last_name.value = ""
         page.update()
